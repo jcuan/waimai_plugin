@@ -1,0 +1,17 @@
+{
+  "name":"外卖提醒",
+  "manifest_version":2,
+  "version":"1.0",
+  "description":"外卖超时未接单提醒",
+  "browser_action":{
+    "default_icon":"icon.jpg"
+  },
+  "content_scripts":[
+  {
+    "matches":["http://kf.waimai.sankuai.com/wmorder/query/r/listAllValidInCustomerService*admin_order_status=WAITING_MERCHANT_CONFIRM*",
+              "http://kf.waimai.sankuai.com/wmorder/query/r/listAllValidInCustomerService*admin_order_status=0*"
+    ],
+    "js":["main.js"]
+  }
+  ]
+}
