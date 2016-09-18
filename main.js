@@ -123,42 +123,37 @@ jcuan.process = function(){
 			isHurry =0;
 		hurry = this.addTable('hurry');
 		common = this.addTable('common');
+
+        function createLateTr( i, lateList ){   //生成超时table里边的tr行 
+                var j, 
+                    who='';     //返回的内容 
+
+				who +='<tr>';
+				for(j=0 ;j<11 ;j++){
+					if( j === 4 ){
+						who += '<td id="jcuan_shangjiaPhone_'+i+'">'+ lateList[i][j] + '</td>';
+					}else if( j=== 6){
+						who += '<td id="jcuan_shoucanPhone_'+i+'">'+ lateList[i][j] + '</td>';
+					}else if(j=== 5){
+						who += '<span id="jcuan_shangjiaKey_'+i+'" hidden="hidden">'+ lateList[i][j] + '</span>';
+					}else if(j===7){
+						who += '<span id="jcuan_shoucanKey_'+i+'" hidden="hidden">'+ lateList[i][j] + '</span>';
+					}else{
+						who += '<td>'+ lateList[i][j] + '</td>';		
+					}
+				who +='</tr>';
+			    return who;
+        }
+
 		for(i=0;i<lateList.length; i++){
 			isHurry = lateList[i][10] - threeSecond;
 			lateList[i][10] = Math.floor(lateList[i][10]/60) + '分' + Math.floor(lateList[i][10]%60) + '秒';
+
 			if(isHurry >=0){	//超时3min
 				hurrySum++;
-				hurry += '<tr>';
-				for(j=0 ;j<11 ;j++){
-					if( j === 4 ){
-						hurry += '<td id="jcuan_shangjiaPhone_'+i+'">'+ lateList[i][j] + '</td>';
-					}else if( j=== 6){
-						hurry += '<td id="jcuan_shoucanPhone_'+i+'">'+ lateList[i][j] + '</td>';
-					}else if(j=== 5){
-						hurry += '<span id="jcuan_shangjiaKey_'+i+'" hidden="hidden">'+ lateList[i][j] + '</span>';
-					}else if(j===7){
-						hurry += '<span id="jcuan_shoucanKey_'+i+'" hidden="hidden">'+ lateList[i][j] + '</span>';
-					}else{
-						hurry += '<td>'+ lateList[i][j] + '</td>';		
-					}
-				}
-				hurry += '</tr>';
+                hurry += createLateTr(i,lateList);
 			}else{
-				common += '<tr>';
-				for(j=0 ;j<11 ;j++){
-					if( j === 4 ){
-						common += '<td id="jcuan_shangjiaPhone_'+i+'">'+ lateList[i][j] + '</td>';
-					}else if( j=== 6){
-						common += '<td id="jcuan_shoucanPhone_'+i+'">'+ lateList[i][j] + '</td>';
-					}else if(j=== 5){
-						common += '<span id="jcuan_shangjiaKey_'+i+'" hidden="hidden">'+ lateList[i][j] + '</span>';
-					}else if(j===7){
-						common += '<span id="jcuan_shoucanKey_'+i+'" hidden="hidden">'+ lateList[i][j] + '</span>';
-					}else{
-						common += '<td>'+ lateList[i][j] + '</td>';		
-					}
-				}
-				common += '</tr>';
+				common += createLateTr(i,lateList);
 			}
 		}
 	
