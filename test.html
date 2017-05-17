@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <audio id='audioPlay' src='http://www.gongqinglin.com/accessory/ding.wav'>
+    </audio>
+    <button  onclick="start();">点击开始播放</button>
+    <button  onclick="jcuan.haha()">点击jcuan</button>
+        <script>
+        function start()
+        {
+            document.getElementById('audioPlay').play();
+        }
+        var jcuan={};
+        start();
+        jcuan.haha= function()
+        {
+            alert(1);
+        };
+    </script>
+</body>
+</html>

@@ -1,17 +1,25 @@
 {
   "name":"外卖提醒",
   "manifest_version":2,
-  "version":"1.0",
+  "version":"1.1",
   "description":"外卖超时未接单提醒",
+  "icons": { "128": "icon.jpg" },
   "browser_action":{
     "default_icon":"icon.jpg"
   },
+  "web_accessible_resources":[
+    "yanzhong.mp3",
+    "yiban.wav",
+    "yichang.wav",
+    "chengxuyichang.wav"
+  ],
   "content_scripts":[
   {
     "matches":["http://kf.waimai.sankuai.com/wmorder/query/r/listAllValidInCustomerService*admin_order_status=WAITING_MERCHANT_CONFIRM*",
               "http://kf.waimai.sankuai.com/wmorder/query/r/listAllValidInCustomerService*admin_order_status=0*"
     ],
-    "js":["main.js"]
+    "js":["main.js"],
+    "run_at":"document_end"
   }
   ]
 }
